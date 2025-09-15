@@ -1,0 +1,49 @@
+server:
+   port: 8084
+
+spring:
+   cloud:
+    gateway:
+      routes:
+        - id: USERSERCICE
+          uri: lb://USERSERCICE
+          predicates:
+            - Path=/user/**
+# we need to map our all request mapping in path like - Path=/x/**,/y/**,/z/**... or /**
+        - id: HOTELSERCICE
+          uri: lb://HOTELSERCICE
+          predicates:
+            - Path=/hotel/**
+
+        - id: RATINGSERCICE
+          uri: lb://RATINGSERCICE
+          predicates:
+            - Path=/rating/**
+
+
+
+    # cloud:
+    #   gateway:
+    #     routes:
+    #       - id: USERSERCICE
+    #         uri: lb://USERSERCICE
+    #         predicates:
+    #           - Paths=/user/**
+
+    #       - id: RATINGSERCICE
+    #         uri: lb://RATINGSERCICE
+    #         predicates:
+    #           - Paths=/rating/**
+
+    #       - id: HOTELSERCICE
+    #         uri: lb://HOTELSERCICE
+    #         predicates:
+    #           - Paths=/hotel/**
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka/
+  instance:
+    prefer-ip-address: true
+          
