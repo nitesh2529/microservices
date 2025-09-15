@@ -1,0 +1,36 @@
+// {
+// 	"folders": [
+// 		{
+// 			"path": "../../../../../.."
+// 		}
+// 	],
+// 	"settings": {
+// 		"java.compile.nullAnalysis.mode": "automatic",
+// 		"java.configuration.updateBuildConfiguration": "interactive"
+// 	}
+// } 
+ {
+	"folders": [
+		{
+			"path": "../../../../../../../../HotelSercice"
+		},
+		{
+			"path": "../../../../../../../../RatingSercice"
+		},
+		{
+			"path": "../../../../../../../../UserSercice"
+		},
+		{
+			"path": "../../../../../../../../Gateway"
+		},
+		{
+			"path": "../../../../../../../../ConfigServer"
+		},
+		{
+			"path": "../../../../../../../../ServiceRegistry"
+		},
+	],
+	"settings": {
+		"java.compile.nullAnalysis.mode": "automatic"
+	}
+}

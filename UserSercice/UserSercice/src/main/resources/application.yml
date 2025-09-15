@@ -1,0 +1,61 @@
+server:
+  port: 8081
+
+spring:
+    data:
+        mondodb:
+            host: localhost
+            port: 27017
+
+
+          
+# config:
+#    optional:
+#      configserver: http//localhost:8085
+
+# here we use confinserver with carry our eureka client configuration data to we 
+# comment out the below configuration instead of this we make some configuration
+# in my application property which is {spring.config.import=configserver:http://localhost:8085}
+
+
+# eureka: 
+#   client:
+#     service-url:
+#       defaultZone: http://localhost:8761/eureka/
+#   instance:
+#     prefer-ip-address: true
+    config:
+      import: optional:configserver:http://localhost:8085 
+
+management:
+  health:
+    circuitbreakers:
+      enabled: true
+  endpoints:
+    web:
+      exposure:
+        include: health
+
+  endpoint:
+    health:
+      show-details: always 
+
+resilience4j:
+  circuitbreaker:
+    instances:
+      ratingHotelBreaker:
+        registerHealthIndicator: true
+        eventConsumerBufferSize: 10
+        failureRateThreshold: 50
+        minimumNumberOfCalls: 5
+        automaticTransitionFromOpenToHalfOpenEnabled: true
+        waitDurationInOpenState: 6s
+        permittedNumberOfCallsInHalfOpenState: 3
+        slidingWindowSize: 10
+        slidingWindowType: COUNT_BASED
+
+retry:
+    instances:
+      ratingHotelService:
+        max-attempts: 3
+        wait-duration: 10s        
